@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _1VALET.API.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace _1VALET.API
 {
@@ -27,6 +29,9 @@ namespace _1VALET.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddDbContext<DataContext>(
+                context => context.UseSqlite(Configuration.GetConnectionString("connectionSQL"))
+            );
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

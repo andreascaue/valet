@@ -11,48 +11,25 @@ namespace _1VALET.API.Controllers
     [Route("[controller]")]
     public class DeviceController : ControllerBase
     {        
-        public DeviceController()
+
+        private readonly DataContext _context;
+
+        public DeviceController(DataContext context)
         {
-           
+           _context = context;
         }
-
-        IEnumerable<Device> _device =  new Device[] {
-                new Device(1,"Device 01" 
-                    ,1         
-                    ,1  
-                    ,"Smartphone Iphone 11" 
-                    ,10     
-                    ,true 
-                    ,"smartpicture") {},
-
-               new Device (2,"Device 02" 
-                    ,10         
-                    ,1  
-                    ,"Smartphone Galaxy S20" 
-                    ,10     
-                    ,true 
-                    ,"smartpicture") {},  
-
-                    new Device ("Device 03" 
-                    ,10         
-                    ,1  
-                    ,"Ipad Mini" 
-                    ,10     
-                    ,true 
-                    ,"tabletpicture") {}, 
-          };         
 
         [HttpGet]
         public IEnumerable<Device> Get()
         {
-          return _device;           
+          return _context.Devices;           
         }
         
 
         [HttpGet("{id}")]
         public IEnumerable<Device> GetByID(int id)
         {
-          return _device.Where(device => device.DeviceID == id);           
+          return _context.Devices.Where(device => device.DeviceID == id);           
         }
        
     }
