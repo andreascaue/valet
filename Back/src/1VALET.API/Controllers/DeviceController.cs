@@ -47,6 +47,7 @@ namespace _1VALET.API.Controllers
         {
           return _device;           
         }
+        
 
         [HttpGet("{id}")]
         public IEnumerable<Device> GetByID(int id)
