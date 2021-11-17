@@ -17,15 +17,15 @@ namespace _1VALET.API.Controllers
         }
 
         IEnumerable<Device> _device =  new Device[] {
-                new Device("Device 01" 
-                    ,10         
+                new Device(1,"Device 01" 
+                    ,1         
                     ,1  
                     ,"Smartphone Iphone 11" 
                     ,10     
                     ,true 
                     ,"smartpicture") {},
 
-               new Device ("Device 02" 
+               new Device (2,"Device 02" 
                     ,10         
                     ,1  
                     ,"Smartphone Galaxy S20" 
@@ -48,23 +48,11 @@ namespace _1VALET.API.Controllers
           return _device;           
         }
 
-        
-        [HttpPost]
-        public string Post()
+        [HttpGet("{id}")]
+        public IEnumerable<Device> GetByID(int id)
         {
-          return "value POST";
+          return _device.Where(device => device.DeviceID == id);           
         }
-
-         [HttpPut("{id}")]
-        public string Put(int id)
-        {
-          return $"value Put id = {id}";
-        }
-
-         [HttpDelete("{id}")]
-        public string Delete(int id)
-        {
-          return $"value Delete id = {id}";
-        }
+       
     }
 }
