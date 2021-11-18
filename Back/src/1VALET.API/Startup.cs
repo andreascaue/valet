@@ -53,6 +53,11 @@ namespace _1VALET.API
 
             app.UseAuthorization();
 
+            app.UseCors(x => x.AllowAnyHeader()
+                              .AllowAnyMethod()
+                              .AllowAnyOrigin()
+            );
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

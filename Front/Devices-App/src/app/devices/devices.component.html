@@ -1,0 +1,9 @@
+<h1>Component Devices</h1>
+
+<p><b>Name out ngfor:</b> {{itensDevices[0].deviceName}}</p>
+
+<div *ngFor='let device of itensDevices'>
+  <p><b>Name:</b> {{device.deviceName}}</p>
+  <p><b>Description:</b> {{device.details}}</p>
+  <hr>
+</div>

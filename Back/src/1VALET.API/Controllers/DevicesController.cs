@@ -9,12 +9,12 @@ namespace _1VALET.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class DeviceController : ControllerBase
+    public class DevicesController : ControllerBase
     {        
 
         private readonly DataContext _context;
 
-        public DeviceController(DataContext context)
+        public DevicesController(DataContext context)
         {
            _context = context;
         }
