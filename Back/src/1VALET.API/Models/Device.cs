@@ -5,6 +5,9 @@ namespace _1VALET.API.Controllers
     public class Device
     {
 
+        public Device(){
+
+        }
         public Device(string deviceName 
                     ,int? temperature         
                     ,int? categoryID 
