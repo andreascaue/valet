@@ -22,7 +22,7 @@ export class DevicesComponent implements OnInit {
     this.getDevices();
   }
 
-  public get filerList(): string {
+  public get filterList(): string {
     return this._filterList;
   }
 
