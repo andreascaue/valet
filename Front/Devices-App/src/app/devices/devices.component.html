@@ -1,9 +1,55 @@
-<h1>Component Devices</h1>
-
-<p><b>Name out ngfor:</b> {{itensDevices[0].deviceName}}</p>
-
-<div *ngFor='let device of itensDevices'>
-  <p><b>Name:</b> {{device.deviceName}}</p>
-  <p><b>Description:</b> {{device.details}}</p>
-  <hr>
+<h2>Devices</h2>
+<hr>
+<div class="form-inline">
+  <div class="form-group mb-2">
+    <input
+    type="text"
+    class="form-control mr-2"
+    placeholder="Search"
+    [(ngModel)]="filterList"
+    >
+    <button type="button" class="btn-sm" (click)="clearSearch()">Cancel</button>
+  </div>
 </div>
+<h3>filter: {{filterList}}</h3>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>
+        <button type="button" class="btn btn-outline-light btn-sm"
+        (click)="changeImage()">
+          {{!showImage ? 'show' : 'hide'}}
+        </button>
+      </th>
+      <th></th>
+      <th>Related Devices</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="devices && devices.length">
+    <tr *ngFor="let device of devicesFiltered">
+      <td>
+        <img [collapse]="!showImage"
+             [isAnimated]="true"
+          src="/assets/{{device.imageURL}}"x
+          [style.width.px]="widthImage"
+          [style.margin.px]="marginImagem"
+        >
+      </td>
+      <td>{{device.deviceId}}</td>
+      <td>{{device.deviceName}} - {{device.details}}</td>
+      <td>
+        <button type="button" class="btn btn-primary btn-sm mr-2">Edit</button>
+        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!devices.length">
+    <tr>
+      <td colspan="8" class="text-center">
+        <h4>Devices not found!</h4>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<!-- {{devices | json}} -->
