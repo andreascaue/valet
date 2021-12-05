@@ -1,6 +1,6 @@
-//using BuildingMaterialsStore.Domain.Validations;
+using System;
 
-namespace _1VALET.API.Controllers
+namespace Devices.Domain
 {
     public class Device
     {
@@ -14,7 +14,9 @@ namespace _1VALET.API.Controllers
                     ,string details 
                     ,decimal? usage     
                     ,bool deviceStatus 
-                    ,string imageURL)
+                    ,DateTime? date
+                    ,string imageURL
+                    )
         {           
             DeviceName = deviceName; 
             Temperature = temperature;         
@@ -32,6 +34,7 @@ namespace _1VALET.API.Controllers
                     ,string details 
                     ,decimal? usage     
                     ,bool deviceStatus 
+                    ,DateTime? date
                     ,string imageURL) :
 
             this(deviceName,
@@ -40,27 +43,20 @@ namespace _1VALET.API.Controllers
                 details,
                 usage,     
                 deviceStatus,
+                date,
                 imageURL)
         {
             DeviceID = deviceID;            
         }    
 
-        public int DeviceID { get; private set; }
+        public int DeviceID { get; set; }
         public string DeviceName { get; private set; }
         public int? Temperature { get; private set; }
         public int? CategoryID { get; private set; }
         public string Details { get; private set; }
         public decimal? Usage { get; private set; }       
         public bool DeviceStatus { get; private set; }
+        public System.DateTime? Date { get; private set; }
         public string ImageURL { get; private set; }
     }
-
-
-    /* 
-    public override bool IsValid()
-    {
-        ValidationResult = new ProductValidation().Validate(this);
-        return ValidationResult.IsValid;           
-    }
-    */
-}
+  }

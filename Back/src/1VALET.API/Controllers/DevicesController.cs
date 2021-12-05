@@ -1,9 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Devices.Application;
+using Devices.Domain;
+using Microsoft.AspNetCore.Http;
+using Devices.Application.DTO;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using System.Linq;
 
 namespace _1VALET.API.Controllers
 {
@@ -11,25 +15,120 @@ namespace _1VALET.API.Controllers
     [Route("[controller]")]
     public class DevicesController : ControllerBase
     {        
+        private readonly IDeviceService _deviceService;
 
-        private readonly DataContext _context;
-
-        public DevicesController(DataContext context)
+        public DevicesController(IDeviceService deviceService)
         {
-           _context = context;
+           _deviceService = deviceService;
         }
 
         [HttpGet]
-        public IEnumerable<Device> Get()
+        public async Task<IActionResult> Get()
         {
-          return _context.Devices;           
+          try 
+          {
+              var devices = await _deviceService.GetAllDevicesAsync();
+              if(devices == null) return NotFound("Devices not found.");
+              
+              return Ok(devices);
+          }
+          catch(Exception ex) 
+          {
+              return this.StatusCode(StatusCodes.Status500InternalServerError, $"Error to return devices. Error: { ex.Message }");
+          }                     
         }
         
 
-        [HttpGet("{id}")]
-        public IEnumerable<Device> GetByID(int id)
+        [HttpGet("{id}")] 
+        public async Task<IActionResult> GetById(int id)
         {
-          return _context.Devices.Where(device => device.DeviceID == id);           
+            try
+            {
+                var device = await _deviceService.GetDeviceByIdAsync(id);
+                if (device == null) return NoContent();
+
+                return Ok(device);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Error to return devices. Error: {ex.Message}");
+            }
+        }
+
+        [HttpGet("{name}/name")]
+        public async Task<IActionResult> GetByName(string name)
+        {
+            try
+            {
+                var device = await _deviceService.GetAllDevicesByNameAsync(name);
+                if (device == null) return NoContent();
+
+                return Ok(device);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Error to return Devices. Erro: {ex.Message}");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(Device model)
+        {
+            try
+            {
+                var device = await _deviceService.AddDevices(model);
+                if (device == null) return NoContent();
+
+                return Ok(device);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar adicionar devices. Erro: {ex.Message}");
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, Device model)
+        {
+            try
+            {
+                var device = await _deviceService.UpdateDevice(id, model);
+                if (device == null) return NoContent();
+
+                return Ok(device);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar atualizar devices. Erro: {ex.Message}");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                var device = await _deviceService.GetDeviceByIdAsync(id);
+                if (device == null) return NoContent();
+
+                if (await _deviceService.DeleteDevice(id))
+                {
+                    return Ok(new { message = "Deletado" });
+                }
+                else
+                {
+                    throw new Exception("Ocorreu um problem não específico ao tentar deletar Device.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar deletar devices. Erro: {ex.Message}");
+            }
         }
        
     }

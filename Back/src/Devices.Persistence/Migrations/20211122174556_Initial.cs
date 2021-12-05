@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace _1VALET.API.Data.Migrations
+namespace Devices.Persistence.Migrations
 {
     public partial class Initial : Migration
     {
@@ -18,6 +19,7 @@ namespace _1VALET.API.Data.Migrations
                     Details = table.Column<string>(type: "TEXT", nullable: true),
                     Usage = table.Column<decimal>(type: "TEXT", nullable: true),
                     DeviceStatus = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: true),
                     ImageURL = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
