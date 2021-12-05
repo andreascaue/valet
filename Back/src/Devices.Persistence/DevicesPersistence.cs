@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Devices.Domain;
 using Devices.Persistence;
 
-namespace ProEventos.Persistence
+namespace Devices.Persistence
 {
     public class DevicesPersistence : IDevicesPersistence
     {
