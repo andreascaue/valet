@@ -35,9 +35,10 @@ namespace _1VALET.API
             services.AddDbContext<DevicesContext>(
                 context => context.UseSqlite(Configuration.GetConnectionString("connectionSQL"))
             );
-             services.AddControllers();
+            
+            services.AddControllers();
 
-         
+            //services.AddAutoMapper();
 
             services.AddScoped<IDeviceService, DeviceService>();
             services.AddScoped<IGeneralPersistence, GeneralPersistence>();

@@ -12,10 +12,10 @@ namespace Devices.Application
 
         Task<bool> DeleteDevice(int deviceId);
 
-        Task<DeviceDto[]> GetAllDevicesByNameAsync(string name);
+        Task<Device[]> GetAllDevicesByNameAsync(string name);
 
-        Task<DeviceDto[]> GetAllDevicesAsync();
+        Task<Device[]> GetAllDevicesAsync();
 
-        Task<DeviceDto> GetDeviceByIdAsync(int DevicesId);
+        Task<Device> GetDeviceByIdAsync(int DevicesId);
     }
 }

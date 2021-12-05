@@ -12,14 +12,12 @@ namespace Devices.Application
 
          private readonly IGeneralPersistence _generalPersistence;
         private readonly IDevicesPersistence _devicesPersistence;
-        private readonly IMapper _mapper;
+      
         public DeviceService(IGeneralPersistence generalPersistence,
-                             IDevicesPersistence devicesPersistence,
-                             IMapper mapper)
+                             IDevicesPersistence devicesPersistence)
         {
             _generalPersistence = generalPersistence;
-            _devicesPersistence = devicesPersistence;
-            _mapper = mapper;
+            _devicesPersistence = devicesPersistence;            
         }
         public async Task<Device> AddDevices(Device model)
         {
@@ -55,14 +53,14 @@ namespace Devices.Application
         }
     }
 
-        public async Task<DeviceDto> GetDeviceByIdAsync(int devicesId)
+        public async Task<Device> GetDeviceByIdAsync(int devicesId)
         {
             try
             {
                 var device = await _devicesPersistence.GetDeviceByIdAsync(devicesId);
                 if (device == null) return null;
                 
-                var result = _mapper.Map<DeviceDto>(device);
+                var result = device;
 
                 return result;
             }
@@ -72,16 +70,16 @@ namespace Devices.Application
             }
         }
 
-        public async Task<DeviceDto[]> GetAllDevicesAsync()
+        public async Task<Device[]> GetAllDevicesAsync()
         {
             try
             {
                 var devices = await _devicesPersistence.GetAllDevicesAsync();
                 if (devices == null) return null;
 
-                var resultado = _mapper.Map<DeviceDto[]>(devices);
+                var result = devices;
 
-                return resultado;
+                return result;
             }
             catch (Exception ex)
             {
@@ -89,16 +87,16 @@ namespace Devices.Application
             }
         }
 
-        public async Task<DeviceDto[]> GetAllDevicesByNameAsync(string name)
+        public async Task<Device[]> GetAllDevicesByNameAsync(string name)
         {
             try
             {
                 var devices = await _devicesPersistence.GetAllDevicesByNameAsync(name);
                 if (devices == null) return null;
 
-                var resultado = _mapper.Map<DeviceDto[]>(devices);
+                var result = devices;
 
-                return resultado;
+                return result;
             }
             catch (Exception ex)
             {
