@@ -32,10 +32,11 @@ export class DevicesComponent implements OnInit {
   }
 
   filterDevices(filterby: string): any {
-    filterby = filterby.toLocaleLowerCase();
+
+  filterby = filterby.toLocaleLowerCase();
     return this.devices.filter(
-      (device: {name: string; details: string; }) => device.name.toLocaleLowerCase().indexOf(filterby) !== -1 ||
-      device.details.toLocaleLowerCase().indexOf(filterby) !== -1
+    (device : any) => device.deviceName.toLocaleLowerCase().indexOf(filterby) !== -1 ||
+     device.details.toLocaleLowerCase().indexOf(filterby) !== -1
     )
   }
 
