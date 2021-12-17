@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Devices.Domain;
 
-namespace Devices.Persistence
+namespace Devices.Persistence.Context
 { 
 
     public class DevicesContext : DbContext

@@ -2,7 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Devices.Domain;
-using Devices.Persistence;
+using Devices.Persistence.Context;
 
 namespace Devices.Persistence
 {

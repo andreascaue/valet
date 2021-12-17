@@ -1,7 +1,5 @@
-using System.Linq;
 using System.Threading.Tasks;
-using Devices.Domain;
-using Microsoft.EntityFrameworkCore;
+using Devices.Persistence.Context;
 
 namespace Devices.Persistence
 {

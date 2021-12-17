@@ -69,7 +69,7 @@ namespace _1VALET.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Error to return Devices. Erro: {ex.Message}");
+                    $"Error to return Devices. Error: {ex.Message}");
             }
         }
 
@@ -86,7 +86,7 @@ namespace _1VALET.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar adicionar devices. Erro: {ex.Message}");
+                    $"Error to try to add devices. Error: {ex.Message}");
             }
         }
 
@@ -103,7 +103,7 @@ namespace _1VALET.API.Controllers
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar atualizar devices. Erro: {ex.Message}");
+                    $"Error to try to update devices. Error: {ex.Message}");
             }
         }
 
@@ -116,18 +116,18 @@ namespace _1VALET.API.Controllers
                 if (device == null) return NoContent();
 
                 if (await _deviceService.DeleteDevice(id))
-                {
-                    return Ok(new { message = "Deletado" });
+                {                   
+                    return Ok(new { message = "Deteled" });
                 }
                 else
                 {
-                    throw new Exception("Ocorreu um problem não específico ao tentar deletar Device.");
+                    throw new Exception("There was a problem trying to delete Device.");
                 }
             }
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar deletar devices. Erro: {ex.Message}");
+                    $"Error to try to delete Devices. Error: {ex.Message}");
             }
         }
        

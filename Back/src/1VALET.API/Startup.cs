@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Devices.Application;
 using Devices.Persistence;
+using Devices.Persistence.Context;
 using AutoMapper;
 using System;
 using Microsoft.Extensions.FileProviders;
