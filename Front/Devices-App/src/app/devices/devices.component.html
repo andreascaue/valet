@@ -1,54 +1,128 @@
 <h2>Devices</h2>
 <hr>
-<div class="form-inline">
-  <div class="form-group mb-2">
-    <input
-    type="text"
-    class="form-control mr-2"
-    placeholder="Search"
-    [(ngModel)]="filterList"
-    >
-    <button type="button" class="btn-sm" (click)="clearSearch()">Cancel</button>
+<div class="row">
+  <div class="col-xs-12 col-md-10 mb-2">
+    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="filterList">
+			   
+							 
+						
+							
+	 
+																				
+  </div>
+  <div class="col-xs-12 col-md-2">
+    <div class="d-grid">
+      <button type="button" class="btn btn-outline-secondary btn-block" (click)="clearSearch()">Cancel</button>
+    </div>
   </div>
 </div>
-<table class="table table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th>
-        <button type="button" class="btn btn-outline-light btn-sm"
-        (click)="changeImage()">
-          {{!showImage ? 'show' : 'hide'}}
+<div class="row mt-4 mb-4">
+  <div [ngClass]="applyStyleDetail">
+    <div class="card">
+      <div class="card-header" (click)="changeImage()">
+        Related Devices
+      </div>
+      <div class="card-body">
+        <table class="table table-striped table-responsive">
+          <tbody *ngIf="devices && devices.length">
+            <tr *ngFor="let device of devicesFiltered">
+              <td>
+                <img [collapse]="!showImage" [isAnimated]="true" src="/assets/{{device.imageURL}}" x
+                  [style.width.px]="widthImage" [style.margin.px]="marginImagem" (click)="seeDetail(device.deviceID)">
+              </td>
+              <td>{{device.deviceId}}</td>
+              <td (click)="seeDetail(device.deviceID)">{{device.deviceName}} - {{device.details}}</td>
+              <td class="text-end">
+                <button type="button" (click)="openPopup(device.deviceID)" class="btn btn-primary btn-sm mx-1 mt-2"><i
+                    class="fas fa-edit"></i> Edit</button>
+                <button type="button" (click)="deleteItem(device.deviceID)" class="btn btn-danger btn-sm mx-1 mt-2"> <i
+                    class="fas fa-trash-alt"></i> Delete</button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot *ngIf="!devices.length">
+            <tr>
+              <td colspan="8" class="text-center">
+                <h4>Devices not found!</h4>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+
+      </div>
+    </div>
+  </div>
+  <div *ngIf="enabledDetail" class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Details: {{deviceItem.deviceName}}
+      </div>
+      <div class="card-body">
+        <div class="col-md-12">Status: {{deviceItem.deviceStatus ? 'Available' : 'Not available'}}</div>
+        <div class="col-md-12">Temperature: {{deviceItem.temperature}}</div>
+        <div class="col-md-12">Usage:</div>
+        <img [collapse]="!showImage" [isAnimated]="true" src="/assets/graphic.png" [style.width.px]="70"
+          [style.margin.px]="marginImagem">
+        <a href="#" class="btn btn-primary mt-5" (click)="closeDetail()"><i class="fas fa-arrow-left"></i> Close</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Update</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div col-md-12>
+            <input type="text" class="form-control" placeholder="Name" [(ngModel)]="deviceItemEdit.deviceName" required>
+          </div>
+        </div>
+        <div class="row">
+          <div col-md-12>
+            <textarea type="text" class="form-control" placeholder="Detail" required
+              [(ngModel)]="deviceItemEdit.details"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="update()">
+          Update
         </button>
-      </th>
-      <th></th>
-      <th>Related Devices</th>
-    </tr>
-  </thead>
-  <tbody *ngIf="devices && devices.length">
-    <tr *ngFor="let device of devicesFiltered">
-      <td>
-        <img [collapse]="!showImage"
-             [isAnimated]="true"
-          src="/assets/{{device.imageURL}}"x
-          [style.width.px]="widthImage"
-          [style.margin.px]="marginImagem"
-        >
-      </td>
-      <td>{{device.deviceId}}</td>
-      <td>{{device.deviceName}} - {{device.details}}</td>
-      <td>
-        <button type="button" class="btn btn-primary btn-sm mr-2">Edit</button>
-        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-  <tfoot *ngIf="!devices.length">
-    <tr>
-      <td colspan="8" class="text-center">
-        <h4>Devices not found!</h4>
-      </td>
-    </tr>
-  </tfoot>
-</table>
+		   
+			   
+							  
+		 
+		  
+										   
+											   
+		  
+									
+								
+											
+									   
+										  
+		 
+		   
+								  
+														 
+		  
+        <button type="button" class="btn btn-danger" (click)="closePopup()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+		
+										  
+								   
+		   
+		 
+		  
+		
 
 <!-- {{devices | json}} -->
