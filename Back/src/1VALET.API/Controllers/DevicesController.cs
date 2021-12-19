@@ -98,7 +98,7 @@ namespace _1VALET.API.Controllers
                 var device = await _deviceService.UpdateDevice(id, model);
                 if (device == null) return NoContent();
 
-                return Ok(device);
+                 return Ok(new { message = "Updated" });
             }
             catch (Exception ex)
             {
