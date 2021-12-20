@@ -3,12 +3,6 @@
 <div class="row">
   <div class="col-xs-12 col-md-10 mb-2">
     <input type="text" class="form-control" placeholder="Search" [(ngModel)]="filterList">
-			   
-							 
-						
-							
-	 
-																				
   </div>
   <div class="col-xs-12 col-md-2">
     <div class="d-grid">
@@ -68,7 +62,6 @@
     </div>
   </div>
 </div>
-
 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -78,38 +71,23 @@
       <div class="modal-body">
         <div class="row">
           <div col-md-12>
-            <input type="text" class="form-control" placeholder="Name" [(ngModel)]="deviceItemEdit.deviceName" required>
+            <label>Name:</label>
+            <input type="text" class="form-control" id="nameEdit" required #nameEdit="ngModel" placeholder="Name" [(ngModel)]="deviceItemEdit.deviceName">
+            <span [hidden]="nameEdit.valid || nameEdit.pristine" class="alert alert-danger"> Name is required. </span>
           </div>
         </div>
         <div class="row">
           <div col-md-12>
-            <textarea type="text" class="form-control" placeholder="Detail" required
-              [(ngModel)]="deviceItemEdit.details"></textarea>
+            <label>Detail:</label>
+            <textarea type="text" class="form-control" id="detailsEdit" required #detailsEdit="ngModel" placeholder="Detail" [(ngModel)]="deviceItemEdit.details"></textarea>
+            <span [hidden]="detailsEdit.valid || detailsEdit.pristine" class="alert alert-danger"> Detail is required. </span>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="update()">
+        <button type="button" class="btn btn-primary" (click)="update()" [disabled]="!detailsEdit.valid || !nameEdit.valid">
           Update
         </button>
-		   
-			   
-							  
-		 
-		  
-										   
-											   
-		  
-									
-								
-											
-									   
-										  
-		 
-		   
-								  
-														 
-		  
         <button type="button" class="btn btn-danger" (click)="closePopup()">
           Close
         </button>
@@ -117,12 +95,12 @@
     </div>
   </div>
 </div>
-		
-										  
-								   
-		   
-		 
-		  
-		
+
+
+
+
+
+
+
 
 <!-- {{devices | json}} -->

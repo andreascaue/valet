@@ -32,6 +32,7 @@ export class DevicesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDevices();
+
   }
 
   public get filterList(): string {
@@ -86,6 +87,8 @@ export class DevicesComponent implements OnInit {
 
   update() {
     // Validar campos vazios -- this.deviceItemEdit
+
+
 
     let updateItem =
       this.devices.find((c) => c.deviceID == this.deviceItemEdit.deviceID) ??
