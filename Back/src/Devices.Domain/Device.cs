@@ -50,13 +50,13 @@ namespace Devices.Domain
         }    
 
         public int DeviceID { get; set; }
-        public string DeviceName { get; private set; }
-        public int? Temperature { get; private set; }
-        public int? CategoryID { get; private set; }
-        public string Details { get; private set; }
-        public decimal? Usage { get; private set; }       
-        public bool DeviceStatus { get; private set; }
-        public System.DateTime? Date { get; private set; }
-        public string ImageURL { get; private set; }
+        public string DeviceName { get; set; }
+        public int? Temperature { get; set; }
+        public int? CategoryID { get; set; }
+        public string Details { get; set; }
+        public decimal? Usage { get; set; }       
+        public bool DeviceStatus { get; set; }
+        public System.DateTime? Date { get; set; }
+        public string ImageURL { get; set; }
     }
   }

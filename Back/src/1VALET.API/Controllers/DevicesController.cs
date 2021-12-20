@@ -91,14 +91,14 @@ namespace _1VALET.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Device model)
+        public async Task<IActionResult> Put(int id, [FromBody] Device model)
         {
             try
             {
                 var device = await _deviceService.UpdateDevice(id, model);
                 if (device == null) return NoContent();
 
-                return Ok(device);
+                 return Ok(new { message = "Updated" });
             }
             catch (Exception ex)
             {
