@@ -73,14 +73,14 @@
           <div col-md-12>
             <label>Name:</label>
             <input type="text" class="form-control" id="nameEdit" required #nameEdit="ngModel" placeholder="Name" [(ngModel)]="deviceItemEdit.deviceName">
-            <span [hidden]="nameEdit.valid || nameEdit.pristine" class="alert alert-danger"> Name is required. </span>
+            <div [hidden]="nameEdit.valid || nameEdit.pristine" class="alert alert-danger"> Name is required. </div>
           </div>
         </div>
         <div class="row">
           <div col-md-12>
             <label>Detail:</label>
             <textarea type="text" class="form-control" id="detailsEdit" required #detailsEdit="ngModel" placeholder="Detail" [(ngModel)]="deviceItemEdit.details"></textarea>
-            <span [hidden]="detailsEdit.valid || detailsEdit.pristine" class="alert alert-danger"> Detail is required. </span>
+            <div [hidden]="detailsEdit.valid || detailsEdit.pristine" class="alert alert-danger"> Detail is required. </div>
           </div>
         </div>
       </div>
