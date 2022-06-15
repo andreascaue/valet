@@ -1,9 +1,7 @@
-## 1VALET
+##
 Angular / .NET Core Full-stack Developer - Challenge 
 
-This project was developed to an interview process to the company https://1valet.com/.
-
-# DevicesApp
+This project was developed to...
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
 
